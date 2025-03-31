@@ -9,7 +9,6 @@ class StorageInterface(ABC):
     """
 
     # Basic file operations
-
     @abstractmethod
     def save(self, source: str, destination: str) -> None:
         """
@@ -19,6 +18,16 @@ class StorageInterface(ABC):
         :param destination: Target path in the storage system (can be within a bucket/subfolder).
         """
         raise NotImplementedError("The save method must be implemented by subclasses.")
+
+    @abstractmethod
+    def read(self, file_path: str) -> bytes:
+        """
+        Read and return the contents of a file from the storage system.
+
+        :param file_path: The path to the file to read.
+        :return: The file content as bytes.
+        """
+        raise NotImplementedError("The read method must be implemented by subclasses.")
 
     @abstractmethod
     def delete(self, file_path: str) -> None:
